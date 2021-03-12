@@ -1,0 +1,56 @@
+{
+ "autoname": "GCL.####",
+ "creation": "2021-02-04 11:42:27.593731",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "gift",
+  "trophies_needed"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "gift.gift_name",
+   "fieldname": "gift",
+   "fieldtype": "Link",
+   "label": "Gift",
+   "options": "Gift Ledger"
+  },
+  {
+   "fetch_from": "gift.trophies_needed",
+   "fieldname": "trophies_needed",
+   "fieldtype": "Data",
+   "label": "Trophies Needed"
+  }
+ ],
+ "modified": "2021-02-04 13:05:02.146567",
+ "modified_by": "Administrator",
+ "module": "Firstu",
+ "name": "Gift Claim Ledger",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

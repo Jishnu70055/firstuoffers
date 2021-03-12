@@ -1,0 +1,28 @@
+[
+ {
+  "align_labels_right": 0,
+  "css": null,
+  "custom_format": 0,
+  "default_print_language": "en",
+  "disabled": 0,
+  "doc_type": "Fuel Payment",
+  "docstatus": 0,
+  "doctype": "Print Format",
+  "font": "Default",
+  "format_data": "[{\"fieldname\": \"print_heading_template\", \"fieldtype\": \"Custom HTML\", \"options\": \"<div class=\\\"print-heading\\\">\\t\\t\\t\\t<h2>Fixture Fuel Payment<br><small>{{ doc.name }}</small>\\t\\t\\t\\t</h2></div>\"}, {\"fieldtype\": \"Section Break\", \"label\": \"\"}, {\"fieldtype\": \"Column Break\"}, {\"fieldname\": \"customer\", \"print_hide\": 0, \"label\": \"Customer\"}, {\"fieldname\": \"fuel_type\", \"print_hide\": 0, \"label\": \"Fuel Type\"}, {\"fieldname\": \"amount\", \"print_hide\": 0, \"label\": \"Amount\"}, {\"fieldname\": \"cashback\", \"print_hide\": 0, \"label\": \"Cashback\"}, {\"fieldname\": \"petrol\", \"print_hide\": 0, \"label\": \"Petrol\"}, {\"fieldname\": \"membership_type\", \"print_hide\": 0, \"label\": \"Membership Type\"}, {\"fieldname\": \"current_fuel_price\", \"print_hide\": 0, \"label\": \"Current Fuel price\"}, {\"fieldname\": \"fistu_fuel_price\", \"print_hide\": 0, \"label\": \"Fistu fuel price\"}]",
+  "html": null,
+  "line_breaks": 0,
+  "modified": "2021-02-24 16:54:38.153674",
+  "module": "Firstu",
+  "name": "Fixture Testing",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "print_format_builder": 0,
+  "print_format_type": "Jinja",
+  "raw_commands": null,
+  "raw_printing": 0,
+  "show_section_headings": 0,
+  "standard": "No"
+ }
+]

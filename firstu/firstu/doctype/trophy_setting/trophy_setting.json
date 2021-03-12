@@ -1,0 +1,44 @@
+{
+ "creation": "2021-02-02 18:51:43.758145",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "refual_frequency",
+  "number_of_trophy"
+ ],
+ "fields": [
+  {
+   "fieldname": "refual_frequency",
+   "fieldtype": "Data",
+   "label": "Refual Frequency"
+  },
+  {
+   "fieldname": "number_of_trophy",
+   "fieldtype": "Data",
+   "label": "Number Of Trophy "
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-02-02 18:51:43.758145",
+ "modified_by": "Administrator",
+ "module": "Firstu",
+ "name": "Trophy Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

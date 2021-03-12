@@ -1,0 +1,176 @@
+{
+ "autoname": "CUS.####",
+ "creation": "2021-02-02 18:24:09.098625",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "personal_details_section",
+  "name1",
+  "mobile_number",
+  "email",
+  "address",
+  "membership_type",
+  "vehicle_details_section",
+  "vehicle_type",
+  "vehicle_name",
+  "vehicle_model",
+  "vehicle_number",
+  "fuel_type",
+  "cashback_details_section",
+  "total_earned_cashback",
+  "balance_amount",
+  "redeemed_amount",
+  "trophies_details_section",
+  "total_trophies_earned",
+  "balance_trophies",
+  "refual"
+ ],
+ "fields": [
+  {
+   "fieldname": "personal_details_section",
+   "fieldtype": "Section Break",
+   "label": "Personal Details"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "mobile_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mobile Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "membership_type",
+   "fieldtype": "Select",
+   "label": "Membership Type",
+   "options": "\nPRIVLAGE\nSTATUS",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vehicle_details_section",
+   "fieldtype": "Section Break",
+   "label": "Vehicle Details"
+  },
+  {
+   "fieldname": "vehicle_type",
+   "fieldtype": "Select",
+   "label": "Vehicle Type",
+   "options": "\nBIKE\nCAR"
+  },
+  {
+   "fieldname": "vehicle_name",
+   "fieldtype": "Data",
+   "label": "Vehicle Name"
+  },
+  {
+   "fieldname": "vehicle_model",
+   "fieldtype": "Data",
+   "label": "Vehicle Model"
+  },
+  {
+   "fieldname": "vehicle_number",
+   "fieldtype": "Data",
+   "label": "Vehicle Number"
+  },
+  {
+   "fieldname": "fuel_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fuel Type",
+   "options": "\nPETROL\nDIESAL",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cashback_details_section",
+   "fieldtype": "Section Break",
+   "label": "CashBack Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_earned_cashback",
+   "fieldtype": "Data",
+   "label": "Total Earned Cashback",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "balance_amount",
+   "fieldtype": "Data",
+   "label": "Balance Amount",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "redeemed_amount",
+   "fieldtype": "Int",
+   "label": "Redeemed Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "trophies_details_section",
+   "fieldtype": "Section Break",
+   "label": "Trophies Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_trophies_earned",
+   "fieldtype": "Data",
+   "label": " Total Trophies Earned",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "balance_trophies",
+   "fieldtype": "Data",
+   "label": "Balance Trophies",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "refual",
+   "fieldtype": "Data",
+   "label": "Refual",
+   "read_only": 1
+  }
+ ],
+ "modified": "2021-02-08 17:52:17.886427",
+ "modified_by": "Administrator",
+ "module": "Firstu",
+ "name": "Customer",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

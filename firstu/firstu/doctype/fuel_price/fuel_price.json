@@ -1,0 +1,68 @@
+{
+ "creation": "2021-02-02 18:45:26.089299",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "petrol_price",
+  "diesal_price",
+  "status_petrol_price",
+  "status_diesal_price",
+  "privilage_petrol_price",
+  "privilage_diesal_price"
+ ],
+ "fields": [
+  {
+   "fieldname": "petrol_price",
+   "fieldtype": "Data",
+   "label": "Petrol Price"
+  },
+  {
+   "fieldname": "diesal_price",
+   "fieldtype": "Data",
+   "label": "Diesal Price"
+  },
+  {
+   "fieldname": "status_petrol_price",
+   "fieldtype": "Data",
+   "label": "Status Petrol Price"
+  },
+  {
+   "fieldname": "status_diesal_price",
+   "fieldtype": "Data",
+   "label": "Status Diesal Price"
+  },
+  {
+   "fieldname": "privilage_petrol_price",
+   "fieldtype": "Data",
+   "label": "Privilage Petrol Price"
+  },
+  {
+   "fieldname": "privilage_diesal_price",
+   "fieldtype": "Data",
+   "label": "Privilage Diesal Price"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-02-02 18:45:49.930572",
+ "modified_by": "Administrator",
+ "module": "Firstu",
+ "name": "Fuel Price",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
