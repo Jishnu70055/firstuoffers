@@ -5,6 +5,12 @@
 from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
+from requests.auth import HTTPBasicAuth
+import requests
+import hmac
+import hashlib
+import sys
+import frappe
 
  
 
@@ -70,8 +76,8 @@ class FuelPayment(Document):
 
 
 						customer_add = frappe.get_doc('Customer',i['name']) #fetching the values inthe doctype customer
-						customer_add.total_earned_cashback = i['total_earned_cashback'] + self.cashback #modified the field total earned cashback
-						customer_add.balance_amount = i['balance_amount'] + self.cashback#modified the field balance amount 
+						customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback) #modified the field total earned cashback
+						customer_add.balance_amount = int(i['balance_amount']) + int(self.cashback)#modified the field balance amount 
 						if customer_add.refual == '0': #cheecking refual value is 0
 							customer_add.total_trophies_earned = int(customer_add.total_trophies_earned) + int(trophy_details.number_of_trophy) #modified total earned trophies
 							customer_add.balance_trophies = int(customer_add.balance_trophies) + int(trophy_details.number_of_trophy)#modified the field balance trophies
@@ -153,6 +159,85 @@ class FuelPayment(Document):
 								customer_add.refual = int(customer_add.refual) - 1#reduce the refual by 1
 
 							customer_add.save()#update and saved the document customer
-	
-		
+	def before_submit(self):
+		pumb = frappe.get_doc("Pumb Details" ,self.pumb_details)
+		if pumb.contact_id == None:
+			url = 'https://api.razorpay.com/v1/contacts'
+			headers =  {"Content-Type": "application/json"}
+			auth=HTTPBasicAuth('rzp_test_BNRLROGFnxu3NQ', 'RjCCeIapanWPIgT95oUFQeJ8')
+			body = {
+                "name":pumb.pumb_owner,
+                "email":pumb.gmail,
+                "contact":pumb.contact_number,
+                "type":"employee",
+                "reference_id":"Acme Contact ID 12345",
+                "notes":{
+                        "notes_key_1":"Tea, Earl Grey, Hot",
+                        "notes_key_2":"Tea, Earl Grey… decaf."
+                }
+            }
+			req = requests.post(url, headers=headers , auth=auth ,  json=body)
+			request = req.json()
+			contact_id = request["id"]
+			pumb.contact_id = contact_id
+			pumb.save()
+			amount = self.amount * 100
+			resp = fund_account(self ,contact_id )
+		else:
+			contact_id = pumb.contact_id
+			amount = self.amount * 100
+			resp = fund_account(self ,contact_id)
+
+def fund_account(self ,contact_id):
+	pumb = frappe.get_doc("Pumb Details" , self.pumb_details)
+	url = "https://api.razorpay.com/v1/fund_accounts"
+	auth=HTTPBasicAuth('rzp_test_BNRLROGFnxu3NQ', 'RjCCeIapanWPIgT95oUFQeJ8')
+	headers = {"Content-Type": "application/json"}
+	body = {
+        "contact_id":contact_id,
+        "account_type":pumb.account_type,
+        "bank_account":{
+        "name":pumb.pumb_owner,
+        "ifsc":pumb.ifsc,
+        "account_number":pumb.account_number
+            }
+    }
+	req = requests.post(url, headers=headers , auth=auth ,  json=body)
+	request = req.json()
+	# frappe.throw(frappe.as_json(request))
+	fund_id = request['id']
+	fund = payout(self ,fund_id)
+
+def payout(self ,fund_id):
+	pumb = frappe.get_doc("Pumb Details" ,self.pumb_details)
+	url = 'https://api.razorpay.com/v1/payouts'
+	auth=HTTPBasicAuth('rzp_test_BNRLROGFnxu3NQ', 'RjCCeIapanWPIgT95oUFQeJ8')
+	headers = {"Content-Type": "application/json"}
+	body = {
+        "account_number": pumb.account_number,
+        "fund_account_id": fund_id,
+        "amount": self.amount * 100,
+        "currency": "INR",
+        "mode": "IMPS",
+        "purpose": "refund",
+        "queue_if_low_balance": True,
+        "reference_id": "Acme Transaction ID 12345",
+        "narration": "Acme Corp Fund Transfer",
+        "notes": {
+                "notes_key_1":"Tea, Earl Grey, Hot",
+                "notes_key_2":"Tea, Earl Grey… decaf."
+            }
+    }
+	req = requests.post(url, headers=headers , auth=auth ,  json=body)
+	request = req.json()
+	cashback_ledger_new = frappe.new_doc("CashBack Ledger")
+	cashback_ledger_new.pumb_details = self.pumb_details
+	cashback_ledger_new.status = 'Recieved'
+	cashback_ledger_new.amount = self.amount
+	cashback_ledger_new.fund_id = fund_id
+	cashback_ledger_new.payment_id = request["id"]
+	cashback_ledger_new.payment_status = request["status"]
+	cashback_ledger_new.insert()
+	cashback_ledger_new.submit()
+
 							

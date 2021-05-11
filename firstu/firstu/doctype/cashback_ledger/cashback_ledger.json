@@ -6,16 +6,21 @@
  "engine": "InnoDB",
  "field_order": [
   "customer",
+  "pumb_details",
   "status",
   "amount",
-  "amended_from"
+  "amended_from",
+  "payment_status",
+  "fund_id",
+  "payment_id"
  ],
  "fields": [
   {
    "fieldname": "customer",
    "fieldtype": "Link",
    "label": "Customer",
-   "options": "Customer"
+   "options": "Customer",
+   "read_only": 1
   },
   {
    "fieldname": "status",
@@ -36,10 +41,34 @@
    "options": "CashBack Ledger",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payment_status",
+   "fieldtype": "Data",
+   "label": "Payment Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fund_id",
+   "fieldtype": "Data",
+   "label": "Fund Id"
+  },
+  {
+   "fieldname": "payment_id",
+   "fieldtype": "Data",
+   "label": "Payment Id"
+  },
+  {
+   "fieldname": "pumb_details",
+   "fieldtype": "Link",
+   "label": "Pumb Details",
+   "options": "Pumb Details",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-08 16:29:23.418059",
+ "modified": "2021-05-08 16:49:18.087026",
  "modified_by": "Administrator",
  "module": "Firstu",
  "name": "CashBack Ledger",

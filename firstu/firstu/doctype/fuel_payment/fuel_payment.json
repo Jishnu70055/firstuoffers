@@ -5,6 +5,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "pumb_details",
   "customer",
   "amount",
   "cashback",
@@ -58,10 +59,16 @@
    "options": "Fuel Payment",
    "print_hide": 1,
    "read_only": 1
+  },
+  {
+   "fieldname": "pumb_details",
+   "fieldtype": "Link",
+   "label": "Pumb Details",
+   "options": "Pumb Details"
   }
  ],
  "is_submittable": 1,
- "modified": "2021-02-08 15:55:38.809388",
+ "modified": "2021-05-07 15:21:33.121665",
  "modified_by": "Administrator",
  "module": "Firstu",
  "name": "Fuel Payment",

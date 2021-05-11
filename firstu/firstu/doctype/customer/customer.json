@@ -24,7 +24,12 @@
   "trophies_details_section",
   "total_trophies_earned",
   "balance_trophies",
-  "refual"
+  "refual",
+  "section_break_21",
+  "account_type",
+  "account_number",
+  "ifsc",
+  "contact_id"
  ],
  "fields": [
   {
@@ -148,9 +153,34 @@
    "fieldtype": "Data",
    "label": "Refual",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_21",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "account_type",
+   "fieldtype": "Select",
+   "label": "Account Type",
+   "options": "\nbank_account"
+  },
+  {
+   "fieldname": "account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  },
+  {
+   "fieldname": "ifsc",
+   "fieldtype": "Data",
+   "label": "IFSC"
+  },
+  {
+   "fieldname": "contact_id",
+   "fieldtype": "Data",
+   "label": "Contact Id"
   }
  ],
- "modified": "2021-02-08 17:52:17.886427",
+ "modified": "2021-05-07 11:17:32.391866",
  "modified_by": "Administrator",
  "module": "Firstu",
  "name": "Customer",
