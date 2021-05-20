@@ -12,6 +12,8 @@
   "petrol",
   "current_fuel_price",
   "fistu_fuel_price",
+  "payment_status",
+  "payout_id",
   "amended_from"
  ],
  "fields": [
@@ -37,19 +39,22 @@
    "default": "0",
    "fieldname": "petrol",
    "fieldtype": "Float",
-   "label": "Petrol"
+   "label": "Petrol",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "current_fuel_price",
    "fieldtype": "Read Only",
-   "label": "Current Fuel price"
+   "label": "Current Fuel price",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "fistu_fuel_price",
    "fieldtype": "Read Only",
-   "label": "Fistu fuel price"
+   "label": "Fistu fuel price",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -65,10 +70,23 @@
    "fieldtype": "Link",
    "label": "Pumb Details",
    "options": "Pumb Details"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "payment_status",
+   "fieldtype": "Data",
+   "label": "Payment Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payout_id",
+   "fieldtype": "Data",
+   "label": "Payout Id",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-05-07 15:21:33.121665",
+ "modified": "2021-05-20 13:11:47.091470",
  "modified_by": "Administrator",
  "module": "Firstu",
  "name": "Fuel Payment",

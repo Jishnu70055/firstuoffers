@@ -28,16 +28,16 @@ class FuelPayment(Document):
 						self.fistu_fuel_price = int(fuel_details.privilage_petrol_price) #added the field firstu fuel price
 						self.petrol = (int(self.amount)) / (int(fuel_details.petrol_price))#the how much liter is calculated by dividing amount with petrol price in doctype fuel price 
 						self.cashback = (int(fuel_details.petrol_price) - int(fuel_details.privilage_petrol_price)) * self.petrol#calculating cashback with multiplying howmuch liters with difference between petrol price and privillage member petrol price 
-						cashback_ledger_new = frappe.new_doc("CashBack Ledger")#fetching the doctype cashback ledger
-						cashback_ledger_new.customer = self.customer#assigning value to customerfield
-						cashback_ledger_new.status = 'Recieved'#assigning value to status field
-						cashback_ledger_new.amount = self.cashback#assigning value to field amount 
-						cashback_ledger_new.insert()#updated and saved the doctype cashback ledger
-						cashback_ledger_new.submit()#submitted the document
+						# cashback_ledger_new = frappe.new_doc("CashBack Ledger")#fetching the doctype cashback ledger
+						# cashback_ledger_new.customer = self.customer#assigning value to customerfield
+						# cashback_ledger_new.status = 'Recieved'#assigning value to status field
+						# cashback_ledger_new.amount = self.cashback#assigning value to field amount 
+						# cashback_ledger_new.insert()#updated and saved the doctype cashback ledger
+						# cashback_ledger_new.submit()#submitted the document
 
 						customer_add = frappe.get_doc('Customer',i['name'])#fetching the values of customer doctype 
-						customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback)#adding amount into total cashback
-						customer_add.balance_amount = int(customer_add.balance_amount) + int(self.cashback)#adding amount into balance cashback
+						# customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback)#adding amount into total cashback
+						# customer_add.balance_amount = int(customer_add.balance_amount) + int(self.cashback)#adding amount into balance cashback
 						if customer_add.refual == '0': #checking the value of refual is 0
 							customer_add.total_trophies_earned = int(int(customer_add.total_trophies_earned) + int(trophy_details.number_of_trophy))#adding trophies into total no:of trophies 
 							customer_add.balance_trophies = int(customer_add.balance_trophies) + int(trophy_details.number_of_trophy)#adding trophies into balance trophies
@@ -67,17 +67,17 @@ class FuelPayment(Document):
 						self.petrol = int(self.amount) / int(fuel_details.petrol_price)#calcualated how much liters
 						self.cashback = (int(fuel_details.petrol_price) - int(fuel_details.status_petrol_price)) * self.petrol#calculated cashback
 
-						cashback_ledger_new = frappe.new_doc("CashBack Ledger") #fetching datas of the doctype cashback ledgers and adding new documemnts 
-						cashback_ledger_new.customer = self.customer #adding customer
-						cashback_ledger_new.status = 'Recieved'#adding field status as recieved
-						cashback_ledger_new.amount = self.cashback #adding the field amount 
-						cashback_ledger_new.insert() #insert it into the doctpe as a new document
-						cashback_ledger_new.submit()#submitted the document
+						# cashback_ledger_new = frappe.new_doc("CashBack Ledger") #fetching datas of the doctype cashback ledgers and adding new documemnts 
+						# cashback_ledger_new.customer = self.customer #adding customer
+						# cashback_ledger_new.status = 'Recieved'#adding field status as recieved
+						# cashback_ledger_new.amount = self.cashback #adding the field amount 
+						# cashback_ledger_new.insert() #insert it into the doctpe as a new document
+						# cashback_ledger_new.submit()#submitted the document
 
 
 						customer_add = frappe.get_doc('Customer',i['name']) #fetching the values inthe doctype customer
-						customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback) #modified the field total earned cashback
-						customer_add.balance_amount = int(i['balance_amount']) + int(self.cashback)#modified the field balance amount 
+						# customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback) #modified the field total earned cashback
+						# customer_add.balance_amount = int(i['balance_amount']) + int(self.cashback)#modified the field balance amount 
 						if customer_add.refual == '0': #cheecking refual value is 0
 							customer_add.total_trophies_earned = int(customer_add.total_trophies_earned) + int(trophy_details.number_of_trophy) #modified total earned trophies
 							customer_add.balance_trophies = int(customer_add.balance_trophies) + int(trophy_details.number_of_trophy)#modified the field balance trophies
@@ -104,16 +104,16 @@ class FuelPayment(Document):
 							self.petrol = int(self.amount) / int(fuel_details.diesal_price)#calculating liters
 							self.cashback = (int(fuel_details.diesal_price) - int(fuel_details.privilage_diesal_price)) * self.petrol#calculating cashback
 
-							cashback_ledger_new = frappe.new_doc("CashBack Ledger") #fetching the values in doctype cashback ledger
-							cashback_ledger_new.customer = self.customer#adding the field customer
-							cashback_ledger_new.status = 'Recieved'#adding the field status as recieved
-							cashback_ledger_new.amount = self.cashback#adding the field amount 
-							cashback_ledger_new.insert()#saved and updated the doctype cashback ledger
-							cashback_ledger_new.submit()#submitted the document
+							# cashback_ledger_new = frappe.new_doc("CashBack Ledger") #fetching the values in doctype cashback ledger
+							# cashback_ledger_new.customer = self.customer#adding the field customer
+							# cashback_ledger_new.status = 'Recieved'#adding the field status as recieved
+							# cashback_ledger_new.amount = self.cashback#adding the field amount 
+							# cashback_ledger_new.insert()#saved and updated the doctype cashback ledger
+							# cashback_ledger_new.submit()#submitted the document
 
 							customer_add = frappe.get_doc('Customer',i['name']) #fetched the datas inthe doctype customer
-							customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback) #updated the field total cashback earned
-							customer_add.balance_amount = int(i['balance_amount']) + int(self.cashback)#updated the field balance amount
+							# customer_add.total_earned_cashback = int(i['total_earned_cashback']) + int(self.cashback) #updated the field total cashback earned
+							# customer_add.balance_amount = int(i['balance_amount']) + int(self.cashback)#updated the field balance amount
 							if customer_add.refual == '0':#checked refual field is 0
 								customer_add.total_trophies_earned = int(customer_add.total_trophies_earned) + int(trophy_details.number_of_trophy)#updated the field total no:of trophies
 								customer_add.balance_trophies = int(customer_add.balance_trophies) + int(trophy_details.number_of_trophy)#updated the field balance trophies
@@ -135,16 +135,16 @@ class FuelPayment(Document):
 							self.cashback = (int(fuel_details.petrol_price) - int(fuel_details.status_diesal_price)) * (self.petrol)#calculating cashbacks
 
 
-							cashback_ledger_new = frappe.new_doc("CashBack Ledger")#creating a new document in cashback ledger
-							cashback_ledger_new.customer = self.customer #added value into field customer
-							cashback_ledger_new.status = 'Recieved'#adding values into the field  status as recieved
-							cashback_ledger_new.amount = self.cashback#added value into the field amount  
-							cashback_ledger_new.insert()#inserted new document 
-							cashback_ledger_new.submit()#submitted the document
+							# cashback_ledger_new = frappe.new_doc("CashBack Ledger")#creating a new document in cashback ledger
+							# cashback_ledger_new.customer = self.customer #added value into field customer
+							# cashback_ledger_new.status = 'Recieved'#adding values into the field  status as recieved
+							# cashback_ledger_new.amount = self.cashback#added value into the field amount  
+							# cashback_ledger_new.insert()#inserted new document 
+							# cashback_ledger_new.submit()#submitted the document
 
 							customer_add = frappe.get_doc('Customer',i['name'])#fetched values inthe doctype customer
-							customer_add.total_earned_cashback = i['total_earned_cashback'] + self.cashback#updated the field total cashback
-							customer_add.balance_amount = i['balance_amount'] + self.cashback#updated the field balance amount 
+							# customer_add.total_earned_cashback = i['total_earned_cashback'] + self.cashback#updated the field total cashback
+							# customer_add.balance_amount = i['balance_amount'] + self.cashback#updated the field balance amount 
 							if customer_add.refual == '0': #checking the vallue of refual is 0
 								customer_add.total_trophies_earned = int(customer_add.total_trophies_earned) + int(trophy_details.number_of_trophy)#updated the field total trophies earned
 								customer_add.balance_trophies = int(customer_add.balance_trophies) + int(trophy_details.number_of_trophy)#updated the field balane trophies
@@ -230,14 +230,16 @@ def payout(self ,fund_id):
     }
 	req = requests.post(url, headers=headers , auth=auth ,  json=body)
 	request = req.json()
-	cashback_ledger_new = frappe.new_doc("CashBack Ledger")
-	cashback_ledger_new.pumb_details = self.pumb_details
-	cashback_ledger_new.status = 'Recieved'
-	cashback_ledger_new.amount = self.amount
-	cashback_ledger_new.fund_id = fund_id
-	cashback_ledger_new.payment_id = request["id"]
-	cashback_ledger_new.payment_status = request["status"]
-	cashback_ledger_new.insert()
-	cashback_ledger_new.submit()
+	self.payment_status = request["status"]
+	self.payout_id = request["id"]
+	# cashback_ledger_new = frappe.new_doc("CashBack Ledger")
+	# cashback_ledger_new.pumb_details = self.pumb_details
+	# cashback_ledger_new.status = 'Recieved'
+	# cashback_ledger_new.amount = self.amount
+	# cashback_ledger_new.fund_id = fund_id
+	# cashback_ledger_new.payment_id = request["id"]
+	# cashback_ledger_new.payment_status = request["status"]
+	# cashback_ledger_new.insert()
+	# cashback_ledger_new.submit()
 
 							
