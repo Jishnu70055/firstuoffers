@@ -88,7 +88,7 @@ def payout(fund_id,amount,customer_id):
     cashback_ledger_new = frappe.new_doc("CashBack Ledger")
     cashback_ledger_new.customer = customer_id
     cashback_ledger_new.status = 'Redeemed'
-    cashback_ledger_new.amount = amount
+    cashback_ledger_new.cashback_amount = amount
     cashback_ledger_new.fund_id = fund_id
     cashback_ledger_new.payment_id = request["id"]
     cashback_ledger_new.payment_status = request["status"]
@@ -117,8 +117,37 @@ def webhook_razorpay(payload):
                     customer.total_earned_cashback = int(customer.total_earned_cashback) + int(fuel_payment_edit.cashback)    
                     customer.balance_amount = int(customer.balance_amount) + int(fuel_payment_edit.cashback)
                     customer.save()
-                    customer.submit()
+                    cashback_ledger = frappe.new_doc("CashBack Ledger")
+                    cashback_ledger.fuel_payment_id = i['name']
+                    cashback_ledger.customer = fuel_payment_edit.customer
+                    cashback_ledger.amount = fuel_payment_edit.amount
+                    cashback_ledger.cashback_amount = fuel_payment_edit.cashback
+                    cashback_ledger.status = 'Recieved'
+                    cashback_ledger.insert()
+                    cashback_ledger.submit()
                     return 'sucess'
+        else:
+            ledger = frappe.db.get_all("CashBack Ledger", filters = {'payment_id': payout_id,}, fields = ['name','payment_id'])
+            if payout_id:
+                for i in ledger:
+                    if payout_id == i['payment_id']:
+                        ledger_update = frappe.get_doc("CashBack Ledger" ,i['name'])
+                        ledger_update.payment_status = status
+                        ledger_update.save()
+                        ledger_update.submit()
+                        if ledger_update.payment_status == 'processed':
+                            customer = frappe.get_doc("Customer" , ledger_update.customer)
+                            customer.total_earned_cashback = int(customer.total_earned_cashback) - int(ledger_update.cashback_amount)
+                            customer.balance_amount = int(customer.balance_amount) - int(ledger_update.cashback_amount)
+                            customer.save()
+                            return "cashback sucess"
+
+
+
+
+                     
+
+
 
 
 # @frappe.whitelist()
@@ -179,64 +208,6 @@ def webhook_razorpay(payload):
 #                 return("Sucess")
 #             else:
 #                 return ("This Payout_ID Not Found")
-# {
-#   "entity": "event",
-#   "account_id": "acc_BFQ7uQEaa7j2z7",
-#   "event": "order.paid",
-#   "contains": [
-#     "payment",
-#     "order"
-#   ],
-#   "payload": {
-#     "payment": {
-#       "entity": {
-#         "id": "pout_H8HFbirXApM9yZ",
-#         "entity": "payment",
-#         "amount": 100,
-#         "currency": "INR",
-#         "status": "captured",
-#         "order_id": "order_DESlLckIVRkHWj",
-#         "invoice_id": null,
-#         "international": false,
-#         "method": "netbanking",
-#         "amount_refunded": 0,
-#         "refund_status": null,
-#         "captured": true,
-#         "description": null,
-#         "card_id": null,
-#         "bank": "HDFC",
-#         "wallet": null,
-#         "vpa": null,
-#         "email": "gaurav.kumar@example.com",
-#         "contact": "+919876543210",
-#         "notes": [],
-#         "fee": 2,
-#         "tax": 0,
-#         "error_code": null,
-#         "error_description": null,
-#         "created_at": 1567674599
-#       }
-#     },
-#     "order": {
-#       "entity": {
-#         "id": "order_DESlLckIVRkHWj",
-#         "entity": "order",
-#         "amount": 100,
-#         "amount_paid": 100,
-#         "amount_due": 0,
-#         "currency": "INR",
-#         "receipt": "rcptid #1",
-#         "offer_id": null,
-#         "status": "paid",
-#         "attempts": 1,
-#         "notes": [],
-#         "created_at": 1567674581
-#       }
-#     }
-#   },
-#   "created_at": 1567674606
-# }
-
 
 # @frappe.whitelist()
 # def fund_account(contact_id,amount,customer):
@@ -293,4 +264,44 @@ def webhook_razorpay(payload):
 # 	cashback_ledger_new.insert()
 #     cashback_ledger_new.submit()
 
-
+# {
+#   "entity":"event",
+#   "account_id":"acc_BfVUrG6tDiL7H0",
+#   "event":"payout.processed",
+#   "contains":[
+#     "payout"
+#   ],
+#   "payload":{
+#     "payout":{
+#       "entity":{
+#         "id":"pout_HD0nu9IeChvoHZ",
+#         "entity":"payout",
+#         "fund_account_id":"fa_1Aa00000000001",
+#         "amount":100,
+#         "currency":"INR",
+#         "notes":{
+#           "note_key 1":"Tea. Earl Gray. Hot.",
+#           "note_key 2":"Tea. Earl Gray. Decaf."
+#         },
+#         "fees":3,
+#         "tax":0,
+#         "status":"processed",
+#         "purpose":"payout",
+#         "utr":"qwer1yuijaaasss",
+#         "mode":"IMPS",
+#         "reference_id":null,
+#         "narration":"Acme Fund Transfer",
+#         "batch_id":null,
+#         "failure_reason":null,
+#         "created_at":1579175640,
+#         "fee_type": "",
+#         "error": {
+#           "description": null,
+#           "source": null,
+#           "reason": null
+#         }
+#       }
+#     }
+#   },
+#   "created_at":1579175674
+# }

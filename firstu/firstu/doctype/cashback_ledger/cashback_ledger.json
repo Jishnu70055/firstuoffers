@@ -5,6 +5,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "fuel_payment_id",
   "customer",
   "pumb_details",
   "status",
@@ -12,7 +13,9 @@
   "amended_from",
   "payment_status",
   "fund_id",
-  "payment_id"
+  "payment_id",
+  "notes",
+  "cashback_amount"
  ],
  "fields": [
   {
@@ -26,12 +29,14 @@
    "fieldname": "status",
    "fieldtype": "Select",
    "label": "Status",
-   "options": "Redeemed\nRecieved"
+   "options": "Redeemed\nRecieved",
+   "read_only": 1
   },
   {
    "fieldname": "amount",
    "fieldtype": "Int",
-   "label": "Amount"
+   "label": "Amount",
+   "read_only": 1
   },
   {
    "fieldname": "amended_from",
@@ -52,12 +57,14 @@
   {
    "fieldname": "fund_id",
    "fieldtype": "Data",
-   "label": "Fund Id"
+   "label": "Fund Id",
+   "read_only": 1
   },
   {
    "fieldname": "payment_id",
    "fieldtype": "Data",
-   "label": "Payment Id"
+   "label": "Payment Id",
+   "read_only": 1
   },
   {
    "fieldname": "pumb_details",
@@ -65,10 +72,29 @@
    "label": "Pumb Details",
    "options": "Pumb Details",
    "read_only": 1
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fuel_payment_id",
+   "fieldtype": "Link",
+   "label": "Fuel Payment Id",
+   "options": "Fuel Payment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cashback_amount",
+   "fieldtype": "Data",
+   "label": "CashBack Amount",
+   "read_only": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2021-05-08 16:49:18.087026",
+ "modified": "2021-05-20 15:27:28.719977",
  "modified_by": "Administrator",
  "module": "Firstu",
  "name": "CashBack Ledger",
